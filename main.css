@@ -1,0 +1,1226 @@
+@import url("https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,700;1,400&display=swap");
+
+/* 
+font-family: 'Allerta Stencil', sans-serif;
+*/
+/*
+font-family: 'Archivo', sans-serif;
+*/
+
+:root {
+  --color-primary: rgba(32, 90, 158, 1);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Archivo", sans-serif;
+  color: white;
+  background-color: black;
+}
+
+.container {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.background-container {
+  position: fixed;
+  z-index: 5;
+  min-height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: opacity 0.9s;
+}
+
+.background-container.bc-1 {
+  background-image: linear-gradient(rgba(8, 11, 14, 0.8), rgba(8, 11, 14, 0.8)),
+    url(images/Meredith.jfif);
+  background-size: cover;
+  background-position: 0 40%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
+.background-container.bc-2 {
+  background-image: linear-gradient(rgba(8, 11, 14, 0.8), rgba(8, 11, 14, 0.8)),
+    url(images/aj-wlad-slate.jpg);
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  opacity: 0;
+}
+
+.header-section,
+.upcoming-events,
+.boxing-news,
+.footer-section {
+  position: relative;
+  z-index: 10;
+}
+
+.header-section {
+  z-index: 15;
+  display: grid;
+  grid-template-rows: minmax(7.5rem, max-content) 1fr;
+  min-height: 100vh;
+}
+
+.nav-search-container {
+  padding-top: 2rem;
+}
+
+.nav-search-container-sticky {
+  /* ako koristim display: none; ili visibility: hidden; kad scrollam gore nema animacije, zato sam stavia z-index da element bude ispod
+  i nisam koristia gore navedene propertye */
+  z-index: -1;
+  opacity: 0;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(32, 90, 158, 0);
+  border-radius: 0 0 80px 80px;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0);
+  border-radius: 0 0 80px 80px;
+  transition: opacity 0.4s, background-color 0.4s, box-shadow 0.4s;
+}
+
+.navigation__list-item.sticky:hover > .navigation__list-item-link {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* za znak kraj jezika */
+.navigation__language.sticky:hover svg {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.nav-search-container-sticky.open-nav {
+  z-index: 15;
+  position: fixed;
+  opacity: 1;
+  background-color: rgba(32, 90, 158, 1);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.26);
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation__list {
+  display: flex;
+  align-items: center;
+}
+
+.navigation__list-item {
+  list-style: none;
+  margin-right: 2.7rem;
+  position: relative;
+}
+
+.navigation__list-item-link {
+  text-decoration: none;
+  color: white;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  transition: 0.2s;
+}
+
+.navigation__list-item:hover > .navigation__list-item-link {
+  color: var(--color-primary);
+}
+
+.navigation__language svg {
+  color: white;
+  transition: 0.2s;
+}
+
+.navigation__language:hover svg {
+  color: var(--color-primary);
+}
+
+.navigation__links-on-hover {
+  visibility: hidden;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  left: -2px;
+  list-style: none;
+  background: black;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: all 0.4s ease;
+}
+
+.navigation__list-item:hover > .navigation__links-on-hover {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.links-on-hover__single-link {
+  width: 100%;
+  height: 100%;
+}
+
+.links-on-hover__single-link > a {
+  text-decoration: none;
+  color: white;
+  display: block;
+  font-size: 1.4rem;
+  white-space: nowrap;
+  text-transform: uppercase;
+  padding: 2rem;
+}
+
+.links-on-hover__single-link > a:hover {
+  background: rgba(184, 203, 225, 0.4);
+}
+
+.navigation__language {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.navigation__language-image {
+  height: 2.3rem;
+}
+
+.navigation__list-item-link.hidden {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-3px);
+  transition: all 0.4s ease;
+}
+
+.navigation__language:hover > .navigation__list-item-link.hidden {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.navigation__menu-open {
+  margin-left: 0.4rem;
+}
+
+.search {
+  margin-top: 2rem;
+  position: relative;
+}
+
+.search__input {
+  width: 100%;
+  height: 3rem;
+  background: rgba(184, 203, 225, 0.4);
+  border-radius: 18px;
+  outline: none;
+  border: none;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.3rem;
+  color: white;
+  font-family: inherit;
+  font-size: 1.8rem;
+}
+
+.search__button {
+  background: transparent;
+  border: none;
+  outline: none;
+  position: absolute;
+  right: 2rem;
+  top: 4px;
+  color: white;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.search__input::placeholder {
+  color: white;
+  font-size: 1.8rem;
+  font-style: italic;
+  font-family: "Archivo", sans-serif;
+  vertical-align: bottom;
+  opacity: 0.7;
+}
+
+.search__input:focus {
+  color: white;
+  font-family: inherit;
+  font-size: 1.8rem;
+}
+
+.heading-primary {
+  display: grid;
+  grid-row: 2 / 3;
+  font-size: 11rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-family: "Allerta Stencil", sans-serif;
+  padding-top: 6rem;
+}
+
+.heading-primary--1,
+.heading-primary--3 {
+  color: var(--color-primary);
+}
+
+.upcoming-events {
+  margin-top: 20rem;
+}
+
+.heading-secondary {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 5rem;
+  font-weight: 500;
+}
+
+/* ------------------ HAMBURGER I NAV ZA MANJE UREĐAJE ---------------------*/
+.search-small-devices {
+  z-index: 15;
+  width: 0;
+  transition: 1.2s;
+}
+
+.search-small-devices.active {
+  width: 40%;
+}
+
+.logo {
+  position: fixed;
+  top: 2rem;
+  left: 2.2rem;
+  text-decoration: none;
+  z-index: 9999;
+  cursor: pointer;
+  color: white;
+  font-family: inherit;
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  transition: color 0.2s;
+
+  padding: 1.1rem;
+  box-sizing: content-box;
+  background: black;
+  border-radius: 5px;
+  box-shadow: 0 0 0 1px white;
+}
+
+.logo:hover {
+  color: var(--color-primary);
+}
+
+.small-devices-nav-search-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: -50%;
+  right: 0;
+  min-height: 100vh;
+  padding-top: 10rem;
+  flex-direction: column;
+  transition: all 0.5s;
+  width: 50%;
+}
+
+.small-devices-nav-search-container.active {
+  left: 0;
+  width: 100%;
+  padding-left: 10rem;
+  padding-right: 10rem;
+  display: flex;
+  overflow: auto;
+  overscroll-behavior-y: contain;
+}
+
+.menu-toggle-left-slide {
+  background: black;
+  position: fixed;
+  width: 50%;
+  top: 0;
+  left: -50%;
+  height: 100vh;
+  transition: all 1s;
+  z-index: 10;
+}
+
+.menu-toggle-left-slide.active {
+  left: 0;
+}
+
+.menu-toggle-right-slide {
+  background: var(--color-primary);
+  position: fixed;
+  width: 50%;
+  top: 0;
+  left: -50%;
+  height: 100vh;
+  transition: all 1s;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-toggle-right-slide.active {
+  left: 50%;
+}
+
+.boxing-glowes {
+  height: 30rem;
+  width: 30rem;
+}
+
+.menu-toggle {
+  position: fixed;
+  top: 2rem;
+  right: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 2.5rem;
+  width: 3.5rem;
+  cursor: pointer;
+  z-index: 9999;
+  transition: all 0.5s;
+  padding: 1rem;
+  box-sizing: content-box;
+  background: black;
+  border-radius: 5px;
+  box-shadow: 0 0 0 1px white;
+}
+
+.menu-toggle.active {
+  transform: rotate(-180deg);
+}
+
+.menu-toggle:hover span {
+  background: var(--color-primary);
+}
+
+.menu-toggle span {
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  transition: background 0.2s;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  width: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  width: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.navigation.small-devices-navigation {
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 7rem;
+  z-index: 15;
+}
+
+.navigation__list.small-devices-navigation-list {
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+}
+
+.navigation__list-item--small-devices {
+  position: relative;
+  margin-bottom: 2.5rem;
+  left: -50%;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.navigation__list-item--small-devices.active {
+  left: 0;
+  opacity: 1;
+}
+
+.navigation__language--small-devices {
+  position: relative;
+  left: -50%;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.navigation__language--small-devices.active {
+  left: 0;
+  opacity: 1;
+  margin-bottom: 4rem;
+}
+
+.navigation__links-on-click {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  list-style: none;
+  opacity: 1;
+  transform: translate(-2px, 10px);
+  transition: visibility 0s, height 0s, opacity 0.4s;
+}
+
+.navigation__links-on-click.hidden {
+  height: 0;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.links-on-click__single-link {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.links-on-click__single-link > a {
+  text-decoration: none;
+  color: white;
+  display: block;
+  font-size: 1.8rem;
+  white-space: nowrap;
+  text-transform: uppercase;
+  padding: 1rem;
+  padding-left: 0.5rem;
+  background: rgba(184, 203, 225, 0.4);
+}
+
+.navigation__list-item-link.small-devices {
+  font-weight: bold;
+}
+
+/* ------------------ UPCOMING EVENTS ---------------------- */
+.upcoming-events__container {
+  display: flex;
+  margin-top: 20rem;
+  margin-bottom: 20rem;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 1s;
+}
+
+.upcoming-events__container.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.upcoming-events__container-fixed {
+  flex-basis: 1020px;
+  flex-shrink: 0;
+  height: 520px;
+  overflow: hidden;
+  position: relative;
+}
+
+.upcoming-events__container-walker {
+  display: flex;
+  transition: all 0.5s;
+  position: absolute;
+  left: 0;
+}
+
+.upcoming-single-event {
+  display: grid;
+  width: 312px;
+  flex-shrink: 0;
+  justify-items: center;
+  grid-row-gap: 7rem;
+  padding: 2rem;
+  padding-bottom: 5rem;
+  padding-top: 5rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+}
+
+.upcoming-single-event {
+  margin-right: 4rem;
+}
+
+.upcoming-single-event.back-blue {
+  background: rgba(32, 90, 158, 0.25);
+}
+
+.upcoming-single-event__title {
+  font-size: 1.8rem;
+  line-height: 1.3;
+  font-weight: 700;
+  text-align: center;
+}
+
+.upcoming-single-event__date {
+  font-size: 1.7rem;
+}
+
+.upcoming-single-event__fighters {
+  display: flex;
+  justify-content: space-between;
+}
+
+.upcoming-single-event__single-fighter {
+  display: grid;
+  justify-items: center;
+}
+
+.upcoming-single-event__single-fighter:first-child {
+  margin-right: 3rem;
+}
+
+.upcoming-single-event__fighter-image {
+  height: 10rem;
+  width: 10rem;
+  margin-bottom: 3rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 50%;
+}
+
+.upcoming-single-event__fighter-image.img-blue {
+  border: 1px solid white;
+  border-radius: 50%;
+}
+
+.upcoming-single-event__fighter-name {
+  font-size: 2rem;
+  line-height: 1.3;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.upcomming-events__arrow {
+  transition: color 0.2s;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.upcomming-events__arrow:hover {
+  color: var(--color-primary);
+}
+
+/* ------------------ BOXING NEWS ------------------------*/
+
+.boxing-news {
+  margin-bottom: 20rem;
+}
+
+.boxing-news__articles-container {
+  margin-top: 20rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 4rem;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 1s;
+}
+
+.boxing-news__articles-container.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.boxing-news__article {
+  text-decoration: none;
+  color: inherit;
+  display: grid;
+  grid-row-gap: 1rem;
+  grid-template-rows: 25rem max-content max-content;
+  grid-template-columns: 1fr 1fr;
+  background: rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+
+.boxing-news__article:hover {
+  background: rgba(32, 90, 158, 0.25);
+}
+
+.boxing-news__article-img-cont {
+  grid-row: 1 / 2;
+  grid-column: 1 / 3;
+  overflow: hidden;
+}
+
+.boxing-news__article-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+.boxing-news__article-title {
+  grid-row: 2 / 3;
+  grid-column: 1 / 3;
+  font-size: 2.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  /* za text dole */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.boxing-new__article-text {
+  grid-row: 3 / 4;
+  grid-column: 1 / 3;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  /* padding-bottom: 1rem; ima dodatnih slova s ovim */
+  margin-bottom: 1.5rem; /* a s ovim nema a imam dojam paddinga ispod teksta */
+  font-size: 1.6rem;
+  /* za text dole */
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* ------------------ FOOTER ---------------------- */
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: rgba(32, 90, 158, 0.25);
+  padding-top: 10rem;
+  margin-bottom: 10rem;
+}
+
+.social-icons {
+  margin-bottom: 8rem;
+}
+
+.social-icons-links {
+  text-decoration: none;
+  color: inherit;
+}
+
+.social-icons-links:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.social-icons svg {
+  transition: color 0.2s;
+}
+
+.social-icons svg:hover {
+  color: var(--color-primary);
+}
+
+.wwl-text {
+  text-align: center;
+  font-size: 2rem;
+  text-transform: uppercase;
+  margin-bottom: 4rem;
+}
+
+.wwl-cont {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10rem;
+  justify-content: center;
+}
+
+.wwl-link {
+  text-decoration: none;
+  height: 8rem;
+  width: 8rem;
+}
+
+.wwl-link:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.wwl-img {
+  height: 100%;
+}
+
+.footer-copyright {
+  text-align: center;
+}
+
+/*---------------- MEDIA QUERY --------------------*/
+
+/* 1300px */
+@media only screen and (max-width: 82rem) {
+  .upcoming-events__container-fixed {
+    flex-basis: 920px;
+  }
+
+  .upcoming-single-event {
+    width: 279px;
+  }
+
+  .upcoming-single-event__fighter-image {
+    height: 9rem;
+    width: 9rem;
+  }
+}
+
+/* 1250px */
+@media only screen and (max-width: 78rem) {
+  .nav-search-container {
+    display: none;
+  }
+
+  .small-devices-nav-search-container {
+    display: flex;
+  }
+}
+
+/* 1170px */
+@media only screen and (max-width: 74rem) {
+  .upcoming-events__container-fixed {
+    flex-basis: 730px;
+    height: 385px;
+  }
+
+  .upcoming-single-event {
+    width: 223px;
+    margin-right: 2.9rem;
+    grid-row-gap: 4rem;
+  }
+
+  .upcoming-single-event__title,
+  .upcoming-single-event__date,
+  .upcoming-single-event__fighter-name {
+    font-size: 1.4rem;
+  }
+
+  .upcoming-single-event__fighter-image {
+    height: 7rem;
+    width: 7rem;
+  }
+
+  .small-devices-nav-search-container.active {
+    padding-right: 5rem;
+    padding-left: 5rem;
+  }
+
+  .search-small-devices.active {
+    width: 45%;
+  }
+}
+
+/* 990px */
+@media only screen and (max-width: 62rem) {
+  .upcoming-events__container-fixed {
+    flex-basis: 530px;
+    overflow: visible;
+    height: unset;
+  }
+
+  .upcoming-events__container-walker {
+    flex-direction: column;
+    width: 100%;
+    position: unset;
+  }
+
+  .upcoming-single-event {
+    width: 100%;
+    margin-bottom: 3rem;
+    margin-right: 0;
+  }
+
+  .upcoming-single-event__title,
+  .upcoming-single-event__date,
+  .upcoming-single-event__fighter-name {
+    font-size: 1.5rem;
+  }
+
+  .upcoming-single-event__fighter-image {
+    height: 8rem;
+    width: 8rem;
+  }
+
+  .upcomming-events__arrow {
+    display: none;
+  }
+}
+
+/* 950px */
+@media only screen and (max-width: 60rem) {
+  .search-small-devices.active {
+    width: 55%;
+  }
+
+  .menu-toggle-left-slide.active {
+    width: 61%;
+  }
+
+  .menu-toggle-right-slide.active {
+    width: 40%;
+    left: 60%;
+  }
+}
+
+/* 880px */
+@media only screen and (max-width: 55rem) {
+  .heading-primary {
+    font-size: 10rem;
+    padding-top: 9rem;
+  }
+
+  .upcoming-events,
+  .upcoming-events__container,
+  .boxing-news__articles-container {
+    margin-top: 15rem;
+  }
+
+  .boxing-news__articles-container {
+    grid-gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 800px */
+@media only screen and (max-width: 50rem) {
+  .background-container.bc-1 {
+    background-position: 20% 40%;
+  }
+}
+
+/* 700px */
+@media only screen and (max-width: 44rem) {
+  .small-devices-nav-search-container.active {
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+
+  .search-small-devices.active {
+    width: 60%;
+  }
+
+  .background-container.bc-1 {
+    background-position: 60% 40%;
+  }
+
+  .heading-primary {
+    font-size: 8rem;
+    padding-top: 13rem;
+  }
+
+  .heading-secondary {
+    font-size: 4rem;
+  }
+
+  .logo,
+  .menu-toggle {
+    top: 4rem;
+  }
+
+  .upcoming-events__container-fixed {
+    flex-basis: 90%;
+  }
+
+  .menu-toggle-right-slide {
+    align-items: flex-end;
+    background: black;
+  }
+}
+
+/* 600px */
+@media only screen and (max-width: 38rem) {
+  .background-container.bc-1 {
+    background-position: 73% 40%;
+  }
+
+  .heading-primary {
+    font-size: 7rem;
+  }
+
+  .upcoming-events__container-fixed {
+    flex-basis: 100%;
+  }
+
+  .boxing-news__articles-container {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 4rem;
+  }
+
+  .heading-secondary {
+    font-size: 3rem;
+  }
+
+  .boxing-news__article-img {
+    height: unset;
+  }
+
+  .search-small-devices.active {
+    width: 100%;
+  }
+
+  .small-devices-navigation-list {
+    width: 100%;
+  }
+
+  .navigation__list-item--small-devices {
+    width: 100%;
+  }
+}
+
+/* 500px */
+@media only screen and (max-width: 32rem) {
+  .background-container.bc-1 {
+    background-position: 64% 40%;
+  }
+
+  .footer-section {
+    margin-bottom: 2rem;
+    padding-bottom: 8rem;
+    padding-top: 8rem;
+  }
+
+  .heading-primary {
+    font-size: 6rem;
+    padding-top: 15rem;
+  }
+
+  .upcoming-events,
+  .upcoming-events__container,
+  .boxing-news__articles-container {
+    margin-top: 11rem;
+  }
+
+  .upcoming-events__container,
+  .boxing-news {
+    margin-bottom: 11rem;
+  }
+
+  .boxing-news__article-title {
+    font-size: 2rem;
+  }
+
+  .boxing-new__article-text {
+    font-size: 1.3rem;
+  }
+
+  .wwl-text {
+    font-size: 1.5rem;
+  }
+
+  .wwl-cont {
+    margin-bottom: 8rem;
+  }
+
+  .wwl-link {
+    height: 7rem;
+    width: 7rem;
+  }
+
+  .social-icons-links:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+
+/* 440px */
+@media only screen and (max-width: 28rem) {
+  .heading-primary {
+    font-size: 5rem;
+    padding-top: 17rem;
+  }
+
+  .boxing-news__article-img {
+    height: 100%;
+  }
+}
+
+/* 400px */
+@media only screen and (max-width: 25rem) {
+  .wwl-link {
+    margin: 0.5rem;
+  }
+
+  .wwl-link:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+
+  .wwl-link:nth-child(2) {
+    margin-right: 1.5rem; /* img je čudan, bez ovoga nema margina*/
+  }
+
+  .boxing-glowes {
+    height: 25rem;
+    width: 25rem;
+  }
+}
+
+/* 370px */
+@media only screen and (max-width: 23rem) {
+  .container {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .heading-primary {
+    font-size: 4rem;
+    padding-top: 22rem;
+  }
+
+  .heading-secondary {
+    font-size: 2rem;
+  }
+
+  .upcoming-single-event__title,
+  .upcoming-single-event__date,
+  .upcoming-single-event__fighter-name {
+    font-size: 1.3rem;
+  }
+
+  .menu-toggle {
+    right: 1.2rem;
+  }
+
+  .logo {
+    left: 1.2rem;
+  }
+
+  .upcoming-events,
+  .upcoming-events__container,
+  .boxing-news__articles-container {
+    margin-top: 9rem;
+  }
+
+  .upcoming-events__container,
+  .boxing-news {
+    margin-bottom: 9rem;
+  }
+
+  .upcoming-single-event {
+    margin-bottom: 1rem;
+  }
+
+  .boxing-news__articles-container {
+    grid-gap: 2rem;
+  }
+
+  .boxing-news__article-title {
+    font-size: 1.8rem;
+  }
+}
+
+/* 280px */
+@media only screen and (max-width: 18rem) {
+  .heading-primary {
+    font-size: 3.5rem;
+  }
+
+  .boxing-glowes {
+    height: 20rem;
+    width: 20rem;
+    opacity: 0.3;
+  }
+}
+
+/* iPad device 768px x 1024px */
+@media only screen and (width: 48em) and (height: 64em) {
+  .heading-primary {
+    padding-top: 30rem;
+  }
+
+  .menu-toggle-left-slide.active {
+    width: 55%;
+  }
+
+  .menu-toggle-right-slide.active {
+    width: 45%;
+    left: 55%;
+  }
+
+  .search-small-devices.active {
+    width: 49%;
+  }
+}
+
+/* iPad Pro device 1024px x 1366.4px */
+@media only screen and (width: 1024px) and (height: 1366.4px) {
+  .heading-primary {
+    padding-top: 46rem;
+  }
+
+  .logo {
+    top: 7rem;
+    font-size: 4rem;
+  }
+
+  .menu-toggle {
+    top: 7rem;
+    height: 4rem;
+    width: 6rem;
+    padding: 1.5rem;
+  }
+
+  .small-devices-nav-search-container {
+    padding-top: 18rem;
+  }
+}
+
+/* iPad Pro device 1366px x 1024px */
+@media only screen and (width: 1366.4px) and (height: 1024px) {
+  .heading-primary {
+    padding-top: 21rem;
+  }
+}
